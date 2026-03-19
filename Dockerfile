@@ -15,6 +15,6 @@ WORKDIR /app
 
 COPY --from=build /app/build/libs/*.war app.war
 
-EXPOSE 8080
+EXPOSE 10000
 
-ENTRYPOINT ["java", "-jar", "app.war"]
+ENTRYPOINT ["java", "-Dserver.port=${PORT:-10000}", "-jar", "app.war"]
