@@ -1,0 +1,247 @@
+@charset "UTF-8";
+/* =============================================
+   MAIN PAGE
+============================================= */
+
+/* =============================================
+   HERO BANNER
+============================================= */
+.hero-banner { position: relative; margin-top: var(--header-height); overflow: hidden; }
+
+.banner-slider { position: relative; width: 100%; height: 520px; }
+
+.banner-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.7s ease; pointer-events: none;
+}
+.banner-slide.active { opacity: 1; pointer-events: auto; }
+
+.banner-image-placeholder {
+  position: relative; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1a3a6b 0%, #0d1f3c 100%);
+  display: flex; align-items: center; justify-content: flex-start; overflow: hidden;
+}
+.banner-image-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(26,92,255,0.3) 0%, transparent 60%);
+}
+.banner-image-placeholder.color2 { background: linear-gradient(135deg, #0a4f3c 0%, #062b1f 100%); }
+.banner-image-placeholder.color2::before { background: radial-gradient(ellipse at 70% 50%, rgba(0,185,107,0.3) 0%, transparent 60%); }
+.banner-image-placeholder.color3 { background: linear-gradient(135deg, #6b2a1a 0%, #3c0d0a 100%); }
+.banner-image-placeholder.color3::before { background: radial-gradient(ellipse at 70% 50%, rgba(255,107,43,0.3) 0%, transparent 60%); }
+
+.image-label {
+  position: absolute; top: 50%; right: 12%; transform: translateY(-50%);
+  font-size: 14px; color: rgba(255,255,255,0.35);
+  border: 1.5px dashed rgba(255,255,255,0.25);
+  padding: 10px 20px; border-radius: var(--radius-sm);
+  pointer-events: none; letter-spacing: 0.05em;
+}
+
+.banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.45) 0%, transparent 60%);
+}
+
+.banner-content {
+  position: relative; z-index: 2; padding: 0 80px; max-width: 600px; color: white;
+  animation: slideInLeft 0.6s ease both;
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.banner-tag {
+  display: inline-block; padding: 5px 14px; background: var(--primary);
+  border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 18px; letter-spacing: 0.04em;
+}
+.banner-slide:nth-child(2) .banner-tag { background: var(--middle-color); }
+.banner-slide:nth-child(3) .banner-tag { background: var(--secondary); }
+
+.banner-title { font-family: var(--font-serif); font-size: 38px; font-weight: 700; line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.5px; }
+.banner-desc { font-size: 16px; color: rgba(255,255,255,0.8); margin-bottom: 28px; }
+.banner-actions { display: flex; gap: 12px; }
+
+.btn-banner-primary {
+  padding: 13px 28px; background: white; color: var(--primary);
+  border-radius: 100px; font-weight: 700; font-size: 15px; transition: var(--transition);
+}
+.btn-banner-primary:hover { background: var(--primary); color: white; }
+
+.btn-banner-secondary {
+  padding: 13px 28px; border: 1.5px solid rgba(255,255,255,0.6); color: white;
+  border-radius: 100px; font-weight: 600; font-size: 15px; transition: var(--transition);
+}
+.btn-banner-secondary:hover { background: rgba(255,255,255,0.15); }
+
+.banner-controls {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px; z-index: 10;
+}
+.banner-prev, .banner-next {
+  width: 32px; height: 32px; background: rgba(255,255,255,0.2); color: white;
+  border-radius: 50%; font-size: 22px; line-height: 1;
+  display: flex; align-items: center; justify-content: center; transition: background var(--transition);
+}
+.banner-prev:hover, .banner-next:hover { background: rgba(255,255,255,0.4); }
+.banner-dots { display: flex; gap: 7px; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.45); transition: var(--transition); }
+.dot.active { width: 24px; border-radius: 100px; background: white; }
+.banner-pause {
+  width: 28px; height: 28px; background: rgba(255,255,255,0.2); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; margin-left: 4px; transition: background var(--transition);
+}
+.banner-pause svg { fill: white; width: 10px; height: 12px; }
+.banner-pause:hover { background: rgba(255,255,255,0.35); }
+
+/* =============================================
+   QUICK NAV
+============================================= */
+.quick-nav { background: white; border-bottom: 1px solid var(--border); padding: 0; box-shadow: var(--shadow-sm); }
+.quick-nav-list { display: flex; justify-content: center; }
+.quick-nav-list li { flex: 0 0 auto; }
+.quick-nav-list li a {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 24px 50px; transition: background var(--transition); border-right: 1px solid var(--border);
+}
+.quick-nav-list li:last-child a { border-right: none; }
+.quick-nav-list li a:hover { background: var(--bg-light); }
+.quick-icon {
+  width: 50px; height: 50px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--primary-light); transition: transform var(--transition);
+}
+.quick-icon svg { width: 32px; height: 32px; }
+.quick-icon.high   { background: #e8eeff; color: var(--primary); }
+.quick-icon.middle { background: #e6f9f0; color: var(--middle-color); }
+.quick-icon.ai     { background: #fff0f0; color: #e5383b; }
+.quick-icon.mypage { background: #fff8e6; color: #f59e0b; }
+.quick-nav-list li a:hover .quick-icon { transform: scale(1.1); }
+.quick-nav-list li a span { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.quick-nav-list li a em { font-style: normal; font-size: 12px; color: var(--text-muted); }
+
+/* =============================================
+   SECTION COMMON
+============================================= */
+.lecture-section { padding: 60px 0; }
+.lecture-section.bg-light { background: var(--bg-light); }
+
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+.section-title-wrap { display: flex; align-items: center; gap: 12px; }
+.section-badge { display: inline-block; padding: 4px 14px; background: var(--primary); color: white; border-radius: 100px; font-size: 13px; font-weight: 700; }
+.section-badge.middle { background: var(--middle-color); }
+.section-title { font-size: 24px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.5px; }
+.section-title.sm { font-size: 20px; }
+
+.btn-more { font-size: 14px; font-weight: 600; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; transition: color var(--transition); }
+.btn-more span { transition: transform var(--transition); }
+.btn-more:hover { color: var(--primary); }
+.btn-more:hover span { transform: translateX(3px); }
+
+.tab-menu { display: flex; gap: 8px; margin-bottom: 28px; border-bottom: 1px solid var(--border); }
+.tab-btn { padding: 10px 20px; font-size: 14px; font-weight: 600; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: var(--transition); }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-btn:hover { color: var(--primary); }
+
+/* =============================================
+   LECTURE GRID
+============================================= */
+.lecture-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.lecture-card { background: white; border-radius: var(--radius-md); border: 1px solid var(--border); overflow: hidden; transition: box-shadow var(--transition), transform var(--transition); cursor: pointer; }
+.lecture-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+.lecture-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.thumb-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #e8eeff, #c7d7ff); display: flex; align-items: center; justify-content: center; }
+.thumb-placeholder span { font-size: 12px; color: var(--primary); border: 1.5px dashed var(--primary); padding: 6px 12px; border-radius: var(--radius-sm); opacity: 0.7; }
+.lecture-badge { position: absolute; top: 10px; left: 10px; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; }
+.lecture-badge.new { background: var(--secondary); color: white; }
+.lecture-badge.hot { background: #ef4444; color: white; }
+.lecture-info { padding: 14px 16px; }
+.lecture-subject { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.lecture-subject.korean  { background: #fef3e2; color: #d97706; }
+.lecture-subject.math    { background: #ede9fe; color: #7c3aed; }
+.lecture-subject.english { background: #e0f2fe; color: #0284c7; }
+.lecture-subject.science { background: #d1fae5; color: #059669; }
+.lecture-title { font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--text-primary); margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.lecture-teacher { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+.lecture-meta { display: flex; gap: 12px; font-size: 12px; color: var(--text-muted); }
+.lecture-rating { color: #f59e0b; font-weight: 600; }
+
+/* =============================================
+   EVENT BANNER
+============================================= */
+.event-banner-section { padding: 20px 0 40px; background: white; }
+.event-banner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.event-banner-img { border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 3/1; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity var(--transition); }
+.event-banner-img:hover { opacity: 0.9; }
+.placeholder-event1 { background: linear-gradient(135deg, #1a5cff22, #1a5cff44); border: 1.5px dashed #1a5cff55; }
+.placeholder-event2 { background: linear-gradient(135deg, #ff6b2b22, #ff6b2b44); border: 1.5px dashed #ff6b2b55; }
+
+/* =============================================
+   BOARD SECTION
+============================================= */
+.board-section { padding: 60px 0; background: white; border-top: 1px solid var(--border); }
+.board-grid { display: grid; grid-template-columns: 1fr 1fr 320px; gap: 30px; }
+.board-box { background: var(--bg-light); border-radius: var(--radius-md); padding: 28px; }
+.board-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--primary); }
+.board-header h2 { font-size: 17px; font-weight: 800; color: var(--text-primary); }
+.btn-more-sm { font-size: 13px; color: var(--text-muted); transition: color var(--transition); }
+.btn-more-sm:hover { color: var(--primary); }
+.board-list .board-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.board-list .board-item:last-child { border-bottom: none; }
+.new-badge { display: inline-block; padding: 1px 7px; background: var(--secondary); color: white; font-size: 10px; font-weight: 800; border-radius: 100px; flex-shrink: 0; }
+.board-link { flex: 1; font-size: 14px; color: var(--text-secondary); transition: color var(--transition); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board-link:hover { color: var(--primary); }
+.board-date { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+.faq-q { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+
+.cs-box .board-header { border-bottom-color: var(--secondary); }
+.cs-content { padding: 4px 0; }
+.cs-tel { margin-bottom: 14px; }
+.cs-tel-label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+.cs-tel strong { font-size: 26px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+.cs-hours p { font-size: 13px; color: var(--text-secondary); margin-bottom: 3px; }
+.cs-hours .holiday { color: #ef4444; font-weight: 600; }
+.cs-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.cs-links a { display: block; text-align: center; padding: 8px; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; color: var(--text-secondary); transition: var(--transition); }
+.cs-links a:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* =============================================
+   PARTNERS
+============================================= */
+.partners-section { padding: 40px 0; background: var(--bg-light); border-top: 1px solid var(--border); overflow: hidden; }
+.partners-track-wrap { overflow: hidden; margin-top: 20px; }
+.partners-track { display: flex; animation: scrollTrack 30s linear infinite; width: max-content; }
+.partners-track span { display: inline-block; padding: 10px 28px; font-size: 14px; font-weight: 500; color: var(--text-muted); border-right: 1px solid var(--border); white-space: nowrap; transition: color var(--transition); }
+.partners-track span:hover { color: var(--primary); }
+@keyframes scrollTrack { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 1024px) {
+  .lecture-grid { grid-template-columns: repeat(2, 1fr); }
+  .board-grid { grid-template-columns: 1fr; }
+  .banner-title { font-size: 30px; }
+  .banner-content { padding: 0 40px; }
+  .quick-nav-list li a { padding: 18px 30px; }
+}
+@media (max-width: 768px) {
+  .banner-slider { height: 380px; }
+  .banner-title { font-size: 24px; }
+  .banner-desc { font-size: 14px; }
+  .btn-banner-primary, .btn-banner-secondary { padding: 10px 18px; font-size: 13px; }
+  .banner-content { padding: 0 24px; }
+  .event-banner-grid { grid-template-columns: 1fr; }
+  .lecture-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .quick-nav-list { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .quick-nav-list li a { border-right: none; border-bottom: 1px solid var(--border); }
+  .partners-track span { padding: 10px 18px; }
+}
+@media (max-width: 480px) {
+  .lecture-grid { grid-template-columns: 1fr; }
+  .banner-slider { height: 320px; }
+  .banner-title { font-size: 20px; }
+  .section-title { font-size: 19px; }
+  .board-box { padding: 20px 16px; }
+}

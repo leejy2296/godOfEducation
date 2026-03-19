@@ -1,0 +1,216 @@
+@charset "UTF-8";
+/* =============================================
+   ADMIN PAGE
+============================================= */
+.admin-wrap    { margin-top: var(--header-height); }
+.admin-hero    { padding: 38px 0 10px; background: linear-gradient(135deg, var(--primary-light), #ffffff); border-bottom: 1px solid var(--border); }
+.admin-title   { font-family: var(--font-serif); font-size: 30px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); margin-bottom: 6px; }
+.admin-desc    { color: var(--text-secondary); margin-bottom: 12px; }
+.admin-section { padding: 40px 0 70px; background: var(--bg-light); }
+
+.admin-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; }
+.admin-card-header { padding: 22px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.admin-card-header h2 { font-size: 18px; font-weight: 800; color: var(--text-primary); }
+.user-count { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.user-count strong { color: var(--primary); font-weight: 700; }
+
+.admin-table-wrap { overflow-x: auto; }
+.admin-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.admin-table thead { background: var(--bg-light); border-bottom: 2px solid var(--primary); }
+.admin-table thead th { padding: 14px 20px; text-align: left; font-weight: 700; font-size: 13px; color: var(--text-secondary); white-space: nowrap; }
+.admin-table tbody tr { border-bottom: 1px solid var(--border); transition: background var(--transition); }
+.admin-table tbody tr:last-child { border-bottom: none; }
+.admin-table tbody tr:hover { background: var(--bg-light); }
+.admin-table td { padding: 16px 20px; color: var(--text-primary); vertical-align: middle; }
+.admin-table tbody tr.row-deleted td { opacity: 0.5; }
+
+/* 뱃지 */
+.status-badge   { display: inline-block; padding: 3px 12px; border-radius: 100px; font-size: 12px; font-weight: 700; }
+.status-badge.approved { background: #d1fae5; color: #059669; }
+.status-badge.pending  { background: #fef3e2; color: #d97706; }
+.status-badge.deleted  { background: #fee2e2; color: #ef4444; }
+
+.streamer-badge { display: inline-block; padding: 3px 12px; border-radius: 100px; font-size: 12px; font-weight: 700; background: var(--primary-light); color: var(--primary); }
+.streamer-badge.no { background: var(--bg-light); color: var(--text-muted); }
+
+.soop-addr-link { color: var(--primary); font-size: 13px; text-decoration: underline; word-break: break-all; }
+.soop-addr-link:hover { color: var(--primary-dark); }
+.addr-none { color: var(--text-muted); font-size: 13px; }
+
+/* 액션 버튼 (테이블 내 작은 버튼) */
+.btn-approve { padding: 6px 14px; border-radius: 100px; background: var(--primary); color: white; font-size: 12px; font-weight: 700; border: 1.5px solid var(--primary); cursor: pointer; transition: var(--transition); }
+.btn-approve:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+.btn-delete { padding: 6px 14px; border-radius: 100px; background: #fff; color: #ef4444; font-size: 12px; font-weight: 700; border: 1.5px solid #ef4444; cursor: pointer; transition: var(--transition); }
+.btn-delete:hover { background: #ef4444; color: #fff; }
+
+.btn-restore { padding: 6px 14px; border-radius: 100px; background: #fff; color: #f59e0b; font-size: 12px; font-weight: 700; border: 1.5px solid #f59e0b; cursor: pointer; transition: var(--transition); }
+.btn-restore:hover { background: #f59e0b; color: #fff; }
+
+.admin-empty { padding: 60px 20px; text-align: center; color: var(--text-muted); font-size: 15px; }
+
+@media (max-width: 768px) {
+  .admin-table thead th, .admin-table td { padding: 12px 14px; }
+  .admin-card-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+/* =============================================
+   ADMIN HOME (중간 선택 페이지)
+============================================= */
+.admin-home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.admin-home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  cursor: pointer;
+}
+
+.admin-home-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+.admin-home-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.admin-home-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.admin-home-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── 뒤로가기 버튼 ── */
+.admin-hero-nav { margin-bottom: 12px; }
+
+.admin-back-btn {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+
+.admin-back-btn:hover { color: var(--primary); }
+
+/* =============================================
+   SUBJECT MODAL
+============================================= */
+.subject-modal-dim {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.55);
+  z-index: 1000;
+}
+
+.subject-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(440px, calc(100% - 32px));
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 1001;
+  overflow: hidden;
+}
+
+.subject-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.subject-modal-header h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.subject-modal-body {
+  padding: 24px;
+}
+
+.subject-modal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .admin-home-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .admin-home-card { padding: 32px 20px; }
+}
+
+/* =============================================
+   SUBJECT TABLE
+============================================= */
+.subject-count {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 10px;
+}
+.subject-count strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.subject-table .col-sq     { width: 80px;  text-align: center; }
+.subject-table .col-name   { text-align: left; }
+.subject-table .col-date   { width: 130px; text-align: center; }
+.subject-table .col-action { width: 130px; text-align: center; }
+
+.subject-table td.col-sq,
+.subject-table td.col-date,
+.subject-table td.col-action { text-align: center; }
+
+.subject-table .col-action {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.subject-table td.col-action {
+  white-space: nowrap;
+}
+
+.subject-table .btn-sm + .btn-sm { margin-left: 6px; }
+
+/* 페이징 */
+.admin-paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+}
