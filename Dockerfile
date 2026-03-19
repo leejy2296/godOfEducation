@@ -12,8 +12,8 @@ RUN gradle dependencies --no-daemon || true
 COPY src ./src
 RUN gradle bootJar -x test --no-daemon
 
-# 2단계: 실행 이미지
-FROM openjdk:17-jdk-slim
+# 2단계: 실행 이미지 (openjdk 대신 eclipse-temurin 사용)
+FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar app.jar
