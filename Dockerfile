@@ -9,7 +9,7 @@ COPY src ./src
 
 RUN gradle bootWar -x test --no-daemon
 
-# 2단계: 실행
+# 2단계: 실행 (내장 Tomcat으로 WAR 실행)
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 
@@ -17,4 +17,4 @@ COPY --from=build /app/build/libs/*.war app.war
 
 EXPOSE 8080
 
-CMD java -Dserver.port=8080 -jar app.war
+ENTRYPOINT ["java", "-jar", "app.war"]
