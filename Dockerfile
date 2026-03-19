@@ -1,23 +1,20 @@
-# 1단계: Gradle로 빌드
+# 1단계: Gradle로 WAR 빌드
 FROM gradle:8.5-jdk17 AS build
 WORKDIR /app
 
-# 의존성 캐싱을 위해 gradle 파일 먼저 복사
 COPY build.gradle settings.gradle ./
 COPY gradle ./gradle
 COPY gradlew ./
-RUN gradle dependencies --no-daemon || true
-
-# 소스 전체 복사 후 빌드
 COPY src ./src
-RUN gradle bootJar -x test --no-daemon
 
-# 2단계: 실행 이미지 (openjdk 대신 eclipse-temurin 사용)
+RUN gradle bootWar -x test --no-daemon
+
+# 2단계: 실행 (내장 Tomcat으로 WAR 실행)
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 
-COPY --from=build /app/build/libs/*.jar app.jar
+COPY --from=build /app/build/libs/*.war app.war
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.war"]

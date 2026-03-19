@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'war'
 	id 'org.springframework.boot' version '3.5.11'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
@@ -25,10 +26,11 @@ repositories {
 }
 
 dependencies {
-	// Spring Web (내장 Tomcat 포함)
+	// Spring Web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	// JSP 지원
+	// JSP 지원 (providedRuntime: WAR 배포 시 외부 Tomcat과 충돌 방지)
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
@@ -54,11 +56,4 @@ tasks.named('test') {
 
 tasks.withType(JavaCompile) {
 	options.compilerArgs << '-parameters'
-}
-
-// JSP 파일을 bootJar에 포함
-bootJar {
-	from('src/main/webapp') {
-		into 'BOOT-INF/classes/META-INF/resources'
-	}
 }
